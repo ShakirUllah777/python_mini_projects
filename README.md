@@ -80,6 +80,20 @@ A basic command-line To-Do List application where users can:
 * View tasks
 * Remove tasks
 
+
+### Banking System (`banking_system`)
+
+A basic Banking system to pratic to the Little Comple Logic of the python
+
+* Create account
+* Deposit
+* Withdraw
+* Transfer
+* Check balance
+* List accounts
+* Exit
+
+
 **Concepts used:** Lists, loops, conditions
 
 ---
