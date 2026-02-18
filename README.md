@@ -80,6 +80,25 @@ A basic command-line To-Do List application where users can:
 * View tasks
 * Remove tasks
 
+
+### Banking System (`banking_system.py`)
+
+A basic Banking system to pratic to the Little Comple Logic of the python
+
+* Create account
+* Deposit
+* Withdraw
+* Transfer
+* Check balance
+* List accounts
+* Exit
+
+
+### BMI Calculator (`bmi_calculation.py`)
+
+A basic simple python program that is uses to calculate the Real time BMI using the Height and Weight.
+
+
 **Concepts used:** Lists, loops, conditions
 
 ---
