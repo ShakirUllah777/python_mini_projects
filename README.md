@@ -99,6 +99,16 @@ A basic Banking system to pratic to the Little Comple Logic of the python
 A basic simple python program that is uses to calculate the Real time BMI using the Height and Weight.
 
 
+### Registration/Login (`registration_login.py`)
+
+A simple project that is build using the simple python code for the `Registration and Login`.
+
+* Registration
+* Login
+* Manu
+* List to store the data-set (Temporary)
+
+
 **Concepts used:** Lists, loops, conditions
 
 ---
