@@ -1,21 +1,47 @@
 users = []
+import re
 
 def register():
     print('-----Registtation------')
 
-    name = input("Enter You Name: ")
-    email = input("Enter Your Email: ")
-    age = int(input("Enter Your age: "))
-    city = input("Enter Your City: ")
-    country = input("Enter Your Country: ")
-    password = input("Enter Your Password: ")
+    name = input("Enter You Name: ").strip()
 
-
+    email = input("Enter Your Email: ").strip()
+    if not email.endswith('@gmail.com'):
+        print('Erro: Email must conation the @gmail.com')
+        return
+    
     for user in users:
         if user['email'] == email:
             print('Email Alreday exits!')
             return
-        
+
+    try:
+        age = int(input("Enter Your age: "))
+        if age <= 18:
+            print('Error: Age must be grater than 18')
+            return
+    except ValueError:
+        print('Erro: Age must be Number!')
+        return
+    
+    city = input("Enter Your City: ")
+
+
+    country = input("Enter Your Country: ").strip().lower()
+    if country != 'pakistan':
+        print('Error: Only Pakistan Country is allowed')
+        return
+    
+    password = input("Enter Your Password: ")
+    if len(password) < 8:
+        print('Error: Password must be atleast 8 chaacter')
+    elif not re.search("[A-Za-z]",password):
+        print("Error: Password must conation Letter: ")
+    elif not re.search('[0-9]',password):
+        print('Error: Password must contain number: ')
+        return
+
     users_data = {
         'name': name,
         'email': email,
@@ -31,22 +57,13 @@ def register():
 
 def login():
     print('---Login Page-----')
-    print('1. Email + Password')
-    print('2. Name + Password')
 
-    choice = input('Enter the choice (1/2) ')
 
-    identifier = input('Enter Name/Email: ')
+    identifier = input('Enter Name/Email: ').strip()
     password = input('Enter Password: ')
 
     for user in users:
-        if choice == '1':
-            if user['email'] == identifier and user['password'] == password:
-                print(f"Login Successful! Welcome {user['name']}\n")
-                return
-            
-        elif choice == '2':
-            if user['name'] == identifier and user['password'] == password:
+            if user['email'] == identifier or user['name'] == identifier and user['password'] == password:
                 print(f"Login Successful! Welcome {user['name']}\n")
                 return
 
