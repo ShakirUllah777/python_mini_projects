@@ -1,5 +1,6 @@
 import re
-import getpass  
+import getpass 
+import bcrypt
 
 users = []
 MAX_ATTEMPTS = 3
@@ -39,16 +40,17 @@ def register():
     password = getpass.getpass("Enter Password: ")
 
     if len(password) < 8:
-        print("Error: Password must be at least 8 characters\n")
+        print('Error: Password must be at least 8 characters')
+        return
+    elif not re.search("[A-Za-z]", password):
+        print("Error: Password must contain letter")
+        return
+    elif not re.search('[0-9]', password):
+        print('Error: Password must contain number')
         return
 
-    if not re.search("[A-Za-z]", password):
-        print("Error: Password must contain letters\n")
-        return
-
-    if not re.search("[0-9]", password):
-        print("Error: Password must contain numbers\n")
-        return
+    password_hash = password.encode('utf-8')
+    hassed_password = bcrypt.hashpw(password_hash, bcrypt.gensalt())
 
     users.append({
         "name": name,
@@ -56,7 +58,7 @@ def register():
         "age": age,
         "city": city,
         "country": country,
-        "password": password
+        "password": hassed_password
     })
 
     print("Registration Successful!\n")
@@ -92,13 +94,14 @@ def login():
     while attempts < MAX_ATTEMPTS:
         identifier = input("Enter Email or Name: ").strip()
         password = getpass.getpass("Enter Password: ")
+        password_bytes = password.encode('utf-8')
 
         for user in users:
-            if (user["email"] == identifier or user["name"] == identifier) and user["password"] == password:
-                print("Login Successful!\n")
-                user_dashboard(user)
-                return
-
+            if (user["email"] == identifier or user["name"] == identifier):
+                if bcrypt.checkpw(password_bytes, user['password']):
+                                    print(f"Login Successful! Welcome {user['name']}\n")
+                                    user_dashboard(user)
+                                    return
         attempts += 1
         print(f"Invalid credentials! Attempts left: {MAX_ATTEMPTS - attempts}")
 
