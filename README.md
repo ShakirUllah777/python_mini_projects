@@ -104,12 +104,12 @@ A basic simple python program that is uses to calculate the Real time BMI using 
 A simple project that is build using the simple python code for the `Registration and Login`.
 
 * Registration
-* Login
+* Login 
 * Manu
 * List to store the data-set (Temporary)
 
 
-**Concepts used:** Lists, loops, conditions
+**Concepts used:** Lists, loops, conditions, Password authentication, login attempt 
 
 ---
 
