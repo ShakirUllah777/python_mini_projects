@@ -3,7 +3,7 @@ import csv
 import os
 
 
-FILE_PATH = 'python_mini_projects/expense_tracker/data/expenses.csv'
+FILE_PATH = 'data/expense.csv'
 
 def initialize_file():
     if not os.path.exists('data'):
